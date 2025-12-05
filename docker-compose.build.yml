@@ -1,0 +1,16 @@
+services:
+  voxtra:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: voxtra:local
+    container_name: voxtra
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./voxtra-data:/app/data
+      - ./env-data:/app/whisperx-env
+    restart: unless-stopped
+
+volumes:
+  voxtra-data:

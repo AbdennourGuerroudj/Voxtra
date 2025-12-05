@@ -1,0 +1,30 @@
+services:
+  voxtra:
+    build:
+      context: .
+      dockerfile: Dockerfile.cuda
+    image: voxtra:local-cuda
+    container_name: voxtra
+    ports:
+      - "8080:8080"
+    deploy:
+      resources:
+        reservations:
+          devices:
+            - driver: nvidia
+              count: all
+              capabilities:
+                - gpu
+    environment:
+      - NVIDIA_VISIBLE_DEVICES=all
+      - NVIDIA_DRIVER_CAPABILITIES=compute,utility
+      - PUID=${PUID:-10001}
+      - PGID=${PGID:-10001}
+    volumes:
+      - ./voxtra_data:/app/data
+      - ./env-data:/app/whisperx-env
+    restart: unless-stopped
+
+volumes:
+  voxtra_data:
+  env-data:

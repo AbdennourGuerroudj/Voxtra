@@ -1,0 +1,12 @@
+services:
+  voxtra:
+    image: voxtra:latest
+    ports:
+      - "8080:8080"
+    volumes:
+      - voxtra_data:/app/data
+    restart: unless-stopped
+
+volumes:
+  voxtra_data:
+
