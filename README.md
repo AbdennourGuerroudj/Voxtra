@@ -76,7 +76,7 @@ volumes:
 
 ```bash
 # Clone the repository
-git clone <repository-url>
+git clone https://github.com/AbdennourGuerroudj/Voxtra.git
 cd Voxtra
 
 # Build frontend
